@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - IntelliPlan{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="welcome-header">
+        <h1>Welcome back, {{ user.username }}!</h1>
+        <p class="date">{{ now|date:"F d, Y" }}</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <!-- Study Plan Card -->
+        <div class="card study-plan-card">
+            <div class="card-header">
+                <span class="material-icons-round">menu_book</span>
+                <h2>My Study Plan</h2>
+            </div>
+            <div class="card-content">
+                <p>Generate personalized study plans:</p>
+                <div class="quick-prompts">
+                    <button class="prompt">Enter your subject.</button>
+                    <button class="prompt">Specify duration (days and hours).</button>
+                    <button class="prompt">Select experience level.</button>
+                </div>
+                <!-- {% if total_pending_tasks_count is not None %}
+                    <p>You have {{ total_pending_tasks_count }} pending tasks in your study plan.</p>
+                {% else %}
+                    <p>No pending tasks. Add some tasks to your study plan!</p>
+                {% endif %} -->
+                <a href="{% url 'study_plan:study_plan' %}" class="btn-primary">
+                    Go to Study Plan
+                    <span class="material-icons-round">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- IntelliChat Card -->
+        <div class="card intellichat-card">
+            <div class="card-header">
+                <span class="material-icons-round">chat_bubble_outline</span>
+                <h2>IntelliChat</h2>
+            </div>
+            <div class="card-content">
+                <p>Need help with your studies? Ask IntelliChat:</p>
+                <div class="quick-prompts">
+                    <button class="prompt">"What is Machine Learning"</button>
+                    <button class="prompt">"OOP in Python"</button>
+                    <button class="prompt">"What is DOM in JavaScript"</button>
+                </div>
+                <a href="{% url 'intellichat:intellichat' %}" class="btn-primary">
+                    Go to IntelliChat
+                    <span class="material-icons-round">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Weekly Progress Card -->
+        <div class="card progress-card">
+            <div class="card-header">
+                <span class="material-icons-round">analytics</span>
+                <h2>Weekly Progress</h2>
+            </div>
+            <div class="card-content">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Tasks Completed</span>
+                        <span class="stat-value">{{ completed_tasks_count }}/{{ total_tasks_count }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">High Priority</span>
+                        <span class="stat-value">{{ high_priority_count }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Completion Rate</span>
+                        <span class="stat-value">{{ completion_rate }}%</span>
+                    </div>
+                    <!-- <div class="stat-item">
+                        <span class="stat-label">Most Common Subject</span>
+                        <span class="stat-value">{{ most_common_subject|default:"None" }}</span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
