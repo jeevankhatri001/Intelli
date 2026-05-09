@@ -16,8 +16,8 @@ def initialize_gemini():
         genai.configure(api_key=settings.GOOGLE_API_KEY)
         
         print("Initializing Gemini models...")
-        study_model = genai.GenerativeModel('gemini-2.0-flash')
-        chatbot_model = genai.GenerativeModel('gemini-2.0-flash-thinking-exp')
+        study_model = genai.GenerativeModel('gemini-1.5-flash')
+        chatbot_model = genai.GenerativeModel('gemini-1.5-flash')
         
         return study_model, chatbot_model
     except Exception as e:
